@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel = "stylesheet" href = "styles.css">
+        <script>
+            function print(x){
+                document.getElementById("print").innerHTML = x
+            }
+            let uscore = 0;
+            let cscore = 0;
+            function rpsls(n){
+                let choices = ["r","p","s","l","sp"];
+                let choice = choices[Math.floor(Math.random() * choices.length)]
+                match = choice + n;
+                let play;
+                switch(choice){
+                    case "r":
+                        play = "rock";
+                        break;
+                    case "p":
+                        play = "paper";
+                        break;
+                    case "s":
+                        play = "scissors"
+                        break;
+                    case "l":
+                        play = "lizard"
+                        break;
+                    case "sp":
+                        play = "Spock"
+                        break;
+                };
+                switch(match){
+                    case "spr":
+                    case "sps":
+                    case "lp":
+                    case "lsp":
+                    case "sp":
+                    case "sl":
+                    case "pr":
+                    case "psp":
+                    case "rs":
+                    case "rl":
+                        print(`Computer picked ${play}. You lose.`)
+                        cscore += 1;
+                        document.getElementById("scoreboard").innerHTML = `Your score: ${uscore} | The computer's score: ${cscore}`;
+                        break;
+                    case "rr":
+                    case "pp":
+                    case "ss":
+                    case "ll":
+                    case "spsp":
+                        print(`Computer picked ${play}. You draw.`)
+                        document.getElementById("scoreboard").innerHTML = `Your score: ${uscore} | The computer's score: ${cscore}`;
+                        break;
+                    default:
+                        print(`Computer picked ${play}. You win.`)
+                        uscore += 1
+                        document.getElementById("scoreboard").innerHTML = `Your score: ${uscore} | The computer's score: ${cscore}`;
+                        break;
+                };
+            }
+        </script>
+    </head>
+    <body>
+        <div style = "text-align: center;">
+        <h1>Rock, Paper, Scissors, Lizard, Spock!</h1>
+        <p>Choose one of the items and the computer will choose another.</p>
+        <details>
+            <summary>The rules below will decide who wins!</summary>
+            <p>• Scissors cuts paper,</p>
+            <p>• Paper covers rock,</p>
+            <p>• Rock crushes lizard,</p>
+            <p>• Lizard poisons Spock,</p>
+            <p>• Spock smashes scissors,</p>
+            <p>• Scissors decapitates lizard,</p>
+            <p>• Lizard eats paper,</p>
+            <p>• Paper disproves Spock,</p>
+            <p>• Spock vaporizes rock,</p>
+            <p>• And, as it always has, rock crushes scissors.</p>
+        </details>
+        <p>You can play as many rounds as you want, the scoreboard below will keep track!</p>
+        </div>
+        <div style = "text-align: center;">
+            <button style = "text-align: center;" onclick = "rpsls('r')"><img src = "images/rock.png"/><p style = "text-align: center;">Rock</p></button>
+            <button style = "text-align: center;" onclick = "rpsls('p')"><img src = "images/paper.png"/><p style = "text-align: center;">Paper</p></button>
+            <button style = "text-align: center;" onclick = "rpsls('s')"><img src = "images/scissors.png"/><p style = "text-align: center;">Scissors</p></button>
+            <button style = "text-align: center;" onclick = "rpsls('l')"><img src = "images/spock.png"/><p style = "text-align: center;">Spock</p></button>
+            <button style = "text-align: center;" onclick = "rpsls('sp')"><img src = "images/lizard.png"/><p style = "text-align: center;">Lizard</p></button>
+        </div>
+        <h2 id = "print" style = "text-align: center;"></h2>
+        <h2 id = "scoreboard" style = "text-align: center;">Your score: 0 | The computer's score: 0</h2>
+    </body>
+</html>
